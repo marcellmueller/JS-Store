@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Store</title>
+		<link rel="stylesheet" href="src/style.css" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+
+	<body>
+		<div id="topBar">
+			<h1>JS Store</h1>
+		</div>
+
+		<div id="filters">
+			<div id="sortName">Sort by Name</div>
+			<div id="sortPrice">
+				Price
+				<select name="price" id="priceSelect">
+					<option value="default">default</option>
+					<option value="ascending">Sort ascending</option>
+					<option value="descending">Sort descending</option>
+				</select>
+			</div>
+			<div id="topCart">Cart</div>
+			<img id="cartImage" src="/img/cart.png" />
+		</div>
+		<div id="mainContent">
+			<div id="inventoryList"></div>
+		</div>
+
+		<div id="confirm">
+			<div id="messageContent"></div>
+			<div id="confirmAdd">Add to cart</div>
+			<div id="cancel">Cancel</div>
+		</div>
+
+		<div id="showCart"></div>
+	</body>
+
+	<script type="module" src="src/index.js"></script>
+</html>
