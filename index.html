@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>Store</title>
+		<title>Thinkpad Store</title>
 		<link rel="stylesheet" href="src/style.css" />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
@@ -12,17 +12,33 @@
 
 	<body>
 		<div id="topBar">
-			<h1>JS Store</h1>
+			<h1>Thinkpad Store</h1>
 		</div>
 
 		<div id="filters">
-			<div id="sortName">Sort by Name</div>
+			<div id="sortName">
+				Sort by Name
+				<select name="name" id="nameSelect">
+					<option value="default">default</option>
+					<option value="ascending">Sort ascending</option>
+					<option value="descending">Sort descending</option>
+				</select>
+			</div>
 			<div id="sortPrice">
 				Price
 				<select name="price" id="priceSelect">
 					<option value="default">default</option>
 					<option value="ascending">Sort ascending</option>
 					<option value="descending">Sort descending</option>
+				</select>
+			</div>
+			<div id="sortCategory">
+				Category
+				<select name="category" id="categorySelect">
+					<option value="default">default</option>
+					<option value="laptops">Laptops</option>
+					<option value="desktops">Desktops</option>
+					<option value="accessories">Accessories</option>
 				</select>
 			</div>
 			<div id="topCart">Cart</div>

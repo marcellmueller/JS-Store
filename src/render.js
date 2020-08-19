@@ -1,3 +1,5 @@
+import { sortCategoryFunc } from './sort.js';
+
 export let clearInv = () => {
 	let inventoryList = document.getElementById('inventoryList');
 	inventoryList.innerHTML = '';
@@ -8,6 +10,9 @@ export let hideConfirm = () => {
 };
 
 let createInventoryElements = (i, itemList, index) => {
+	//create a copy of inv array so we don't have to change original on catergory filtering
+	let arrCopy = itemList;
+
 	let invItems = document.createElement('div');
 	let name = document.createElement('h3');
 	let description = document.createElement('div');
@@ -43,8 +48,18 @@ export let cartDisplay = (cart) => {
 
 //iterates through products and at
 export let displayInventory = (itemList, index, cart) => {
-	for (let i = 0; i < itemList.length; i++) {
-		createInventoryElements(i, itemList, index);
+	let arrCopy = itemList;
+	if (document.getElementById('categorySelect').value === 'laptops') {
+		arrCopy = sortCategoryFunc(arrCopy, 'Laptops');
+	} else if (document.getElementById('categorySelect').value === 'desktops') {
+		arrCopy = sortCategoryFunc(arrCopy, 'Desktops');
+	} else if (
+		document.getElementById('categorySelect').value === 'accessories'
+	) {
+		arrCopy = sortCategoryFunc(arrCopy, 'Accessories');
+	}
+	for (let i = 0; i < arrCopy.length; i++) {
+		createInventoryElements(i, arrCopy, index);
 	}
 	cartDisplay(cart);
 };

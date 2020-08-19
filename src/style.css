@@ -46,10 +46,12 @@ h1 {
 	background-color: black;
 	height: 40px;
 	margin: 0;
+	user-select: none;
 }
 
 #sortName,
-#sortPrice {
+#sortPrice,
+#sortCategory {
 	display: inline-block;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
@@ -58,7 +60,8 @@ h1 {
 }
 
 #sortName:hover,
-#sortPrice:hover {
+#sortPrice:hover,
+#sortCategory:hover {
 	color: black;
 	background-color: #f7f7f7;
 }
