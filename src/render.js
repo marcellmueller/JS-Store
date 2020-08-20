@@ -1,5 +1,6 @@
-import { sortCategoryFunc } from './sort.js';
+import { sortCategoryFunc, sortRefurbFunc } from './sort.js';
 
+//clear inventory DOM before we repopulate it
 export let clearInv = () => {
 	let inventoryList = document.getElementById('inventoryList');
 	inventoryList.innerHTML = '';
@@ -10,8 +11,7 @@ export let hideConfirm = () => {
 };
 
 let createInventoryElements = (i, itemList, index, cart) => {
-	//create a copy of inv array so we don't have to change original on catergory filtering
-
+	//create product DOM elements.
 	let invItems = document.createElement('div');
 	let name = document.createElement('h3');
 	let description = document.createElement('div');
@@ -61,6 +61,10 @@ export let cartDisplay = (cart) => {
 //iterates through products and at
 export let displayInventory = (itemList, index, cart) => {
 	let arrCopy = itemList;
+
+	//Check to see if a category is specified before displaying the whole inventory.
+	//If category isn't default then we will filter through the inventory array
+	//	and use a temporary, non destructive array 'arrCopy' to display selection
 	if (document.getElementById('categorySelect').value === 'laptops') {
 		arrCopy = sortCategoryFunc(arrCopy, 'Laptops');
 	} else if (document.getElementById('categorySelect').value === 'desktops') {
@@ -69,7 +73,12 @@ export let displayInventory = (itemList, index, cart) => {
 		document.getElementById('categorySelect').value === 'accessories'
 	) {
 		arrCopy = sortCategoryFunc(arrCopy, 'Accessories');
+	} else if (
+		document.getElementById('categorySelect').value === 'refurbished'
+	) {
+		arrCopy = sortRefurbFunc(arrCopy, true);
 	}
+
 	for (let i = 0; i < arrCopy.length; i++) {
 		createInventoryElements(i, arrCopy, index, cart);
 	}

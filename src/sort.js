@@ -14,9 +14,17 @@ export let sortByNameDescending = (arr) => {
 	arr.sort((a, b) => b.name.localeCompare(a.name));
 };
 
+//filter through inventory for selected category
 export let sortCategoryFunc = (arr, string) => {
 	let filtered = arr.filter(function (list) {
-		return list.category == string;
+		return list.category === string;
+	});
+	return filtered;
+};
+
+export let sortRefurbFunc = (arr, bool) => {
+	let filtered = arr.filter(function (list) {
+		return list.refurbished === bool;
 	});
 	return filtered;
 };
