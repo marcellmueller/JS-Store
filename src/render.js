@@ -9,24 +9,27 @@ export let hideConfirm = () => {
 	document.getElementById('confirm').style.visibility = 'hidden';
 };
 
-let createInventoryElements = (i, itemList, index) => {
+let createInventoryElements = (i, itemList, index, cart) => {
 	//create a copy of inv array so we don't have to change original on catergory filtering
-	let arrCopy = itemList;
 
 	let invItems = document.createElement('div');
 	let name = document.createElement('h3');
 	let description = document.createElement('div');
 	let price = document.createElement('div');
 	let addToCart = document.createElement('div');
+	let image = document.createElement('img');
 
 	invItems.classList.add('invItems');
 	addToCart.classList.add('addToCart');
+	image.classList.add('productImage');
 
 	name.textContent = itemList[i].name;
 	description.textContent = itemList[i].description;
 	price.textContent = '$' + itemList[i].price;
 	addToCart.textContent = 'Add to cart';
+	image.src = '/img/' + itemList[i].id + '.jpg';
 
+	invItems.appendChild(image);
 	invItems.appendChild(name);
 	invItems.appendChild(description);
 	invItems.appendChild(price);
@@ -36,7 +39,16 @@ let createInventoryElements = (i, itemList, index) => {
 	addToCart.onclick = () => {
 		// showClickDiv();
 		document.getElementById('confirm').style.visibility = 'visible';
-		index = itemList.findIndex((x) => x.name === invItems.firstChild.innerHTML);
+		index = itemList.findIndex(
+			(x) => x.name === invItems.firstChild.nextSibling.innerHTML
+		);
+		confirmAdd.onclick = () => {
+			cart.push(itemList[index]);
+			itemList[index].inventory = itemList[index].inventory - 1;
+			console.log(itemList[index].inventory);
+			cartDisplay(cart);
+			hideConfirm();
+		};
 	};
 };
 
@@ -59,7 +71,7 @@ export let displayInventory = (itemList, index, cart) => {
 		arrCopy = sortCategoryFunc(arrCopy, 'Accessories');
 	}
 	for (let i = 0; i < arrCopy.length; i++) {
-		createInventoryElements(i, arrCopy, index);
+		createInventoryElements(i, arrCopy, index, cart);
 	}
 	cartDisplay(cart);
 };

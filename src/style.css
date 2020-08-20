@@ -13,7 +13,6 @@ h1 {
 #topCart {
 	color: #f7f7f7;
 	float: right;
-	display: inline-block;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	padding: 10px;
@@ -34,6 +33,7 @@ h1 {
 }
 
 #topBar {
+	position: fixed;
 	background-color: black;
 	color: #f7f7f7;
 	width: 100%;
@@ -42,9 +42,11 @@ h1 {
 }
 
 #filters {
+	position: fixed;
 	color: #f7f7f7;
 	background-color: black;
 	height: 40px;
+	width: 100%;
 	margin: 0;
 	user-select: none;
 }
@@ -83,12 +85,23 @@ h1 {
 }
 
 #inventoryList {
-	display: inline-block;
+	display: grid;
+	grid-gap: 4px;
+	padding-top: 50px;
+	grid-template-columns: repeat(5, 1fr);
 }
 .invItems {
 	display: inline-block;
 	padding: 10px;
 	margin: 20px;
+	width: 192px;
+	height: 360px;
+	border-style: solid;
+}
+
+.productImage {
+	width: 192px;
+	height: 192px;
 }
 
 #confirm {
