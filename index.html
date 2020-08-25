@@ -12,7 +12,10 @@
 
 	<body>
 		<div id="topBar">
-			<h1>Thinkpad Store</h1>
+			<h1>
+				<img src="./img/thinkpad.jpg" width="160px" />
+				(not) <del>Authorized</del> Retailer
+			</h1>
 		</div>
 
 		<div id="filters">
@@ -51,11 +54,15 @@
 
 		<div id="confirm">
 			<div id="messageContent"></div>
-			<div id="confirmAdd">Add to cart</div>
+			<div id="confirmAdd">Add to cart &#128722;</div>
 			<div id="cancel">Cancel</div>
 		</div>
 
-		<div id="showCart"></div>
+		<div id="cartTotal">
+			<div id="total">Your cart is empty!</div>
+			<div id="continueButton">Continue Browsing</div>
+			<div id="checkOut">Checkout</div>
+		</div>
 	</body>
 
 	<script type="module" src="src/index.js"></script>

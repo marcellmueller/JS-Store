@@ -37,7 +37,6 @@ let createInventoryElements = (i, itemList, index, cart) => {
 	inventoryList.appendChild(invItems);
 
 	addToCart.onclick = () => {
-		// showClickDiv();
 		document.getElementById('confirm').style.visibility = 'visible';
 		index = itemList.findIndex(
 			(x) => x.name === invItems.firstChild.nextSibling.innerHTML
@@ -83,4 +82,55 @@ export let displayInventory = (itemList, index, cart) => {
 		createInventoryElements(i, arrCopy, index, cart);
 	}
 	cartDisplay(cart);
+};
+
+let renderCart = (i, cart) => {
+	let inventoryList = document.getElementById('inventoryList');
+	let cartItems = document.createElement('div');
+	let cartName = document.createElement('h3');
+	let cartPrice = document.createElement('div');
+	let cartImage = document.createElement('img');
+	let removeCart = document.createElement('div');
+	cartItems.classList.add('cartItems');
+	removeCart.classList.add('removeCart');
+	cartImage.classList.add('cartImage');
+
+	cartName.textContent = cart[i].name;
+	cartPrice.textContent = '$' + cart[i].price;
+	removeCart.textContent = 'Remove from cart X';
+	cartImage.src = '/img/' + cart[i].id + '.jpg';
+
+	cartItems.appendChild(cartImage);
+	cartItems.appendChild(cartName);
+	cartItems.appendChild(cartPrice);
+	cartItems.appendChild(removeCart);
+	inventoryList.appendChild(cartItems);
+	removeCart.onclick = () => {
+		removeItem(cart);
+		clearInv();
+		showCart(cart);
+		document.getElementById('total').textContent =
+			'Total: ' + displayTotal(cart);
+		cartDisplay(cart);
+	};
+};
+
+export let showCart = (cart) => {
+	for (let i = 0; i < cart.length; i++) {
+		renderCart(i, cart);
+	}
+};
+
+export let displayTotal = (cart) => {
+	let total = 0;
+	for (let i = 0; i < cart.length; i++) {
+		console.log(cart[i].price);
+		total = total + cart[i].price;
+	}
+	return total.toFixed(2);
+};
+
+export let removeItem = (cart) => {
+	let findIndex = cart.findIndex((x) => x.name === name.textContent);
+	cart.splice(findIndex, 1);
 };
